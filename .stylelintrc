@@ -1,0 +1,14 @@
+{
+  "extends": ["stylelint-config-standard", "stylelint-config-prettier"],
+  "rules": {
+    "no-descending-specificity": null,
+    "no-duplicate-selectors": null,
+    "selector-class-pattern": null,
+    "number-max-precision": null,
+    "function-linear-gradient-no-nonstandard-direction": null,
+    "function-disallowed-list": null,
+    "function-no-unknown": null,
+    "import-notation": null,
+    "media-feature-range-notation": null
+  }
+}
