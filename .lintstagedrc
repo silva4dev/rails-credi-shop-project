@@ -1,0 +1,7 @@
+{
+  "app/views/**/*.html.erb": ["npm run erb:fix"],
+  "**/**/*.{scss,css}": ["npm run style:fix"],
+  "**/**/*.md": ["npm run md:fix"],
+  "**/**/*.json": ["npm run json:fix"],
+  "**/**/*.rb": ["npm run ruby:fix"]
+}
