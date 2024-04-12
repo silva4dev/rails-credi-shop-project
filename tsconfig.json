@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "rootDir": "./",
+    "baseUrl": "./",
+    "allowJs": true
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  },
+  "include": [
+    "app/assets/entrypoints/**/*",
+    "vite.config.ts"
+  ],
+}
