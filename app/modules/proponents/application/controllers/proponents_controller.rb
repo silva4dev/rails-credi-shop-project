@@ -8,12 +8,9 @@ module Proponents
     module Controllers
       class ProponentsController < ApplicationController
         def index
-          input = { page: params[:page] }
-          @proponents = Usecases::ProponentsUsecase.new.find_all_proponents_by_page(input)
+          @proponents = Usecases::ProponentsUsecase.new.find_all_proponents_by_page({ page: params[:page] })
           respond_to do |format|
-            format.html do
-              render 'proponents/index'
-            end
+            format.html { render 'proponents/index' }
           end
         end
 
