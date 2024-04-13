@@ -1,0 +1,33 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1>Lista de Proponentes</h1>
+  <%= link_to new_proponent_path, class: "btn btn-outline-primary" do %>
+    <i class="fa fa-plus" style="margin-right: 8px"></i>Novo Proponente
+  <% end %>
+</div>
+<% if @proponents.any? %>
+  <div class="row">
+    <% @proponents.each do |proponent| %>
+      <div class="col-md-4 mb-4">
+        <div class="card rounded">
+          <div class="card-body">
+            <h5 class="card-title mb-3"><%= proponent.name %></h5>
+            <p class="text-secondary mb-1">
+              <strong>CPF:</strong> <%= proponent.cpf %>
+            </p>
+            <p class="text-secondary mb-1">
+              <strong>Data de Nascimento:</strong> <%= l(proponent.date_of_birth) %>
+            </p>
+            <p class="text-secondary mb-0">
+              <strong>Salário:</strong> <%= proponent.salary %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= paginate @proponents, theme: 'twitter-bootstrap-4' %>
+<% else %>
+  <div class="d-flex align-items-center justify-content-center">
+    <p class="text-secondary" style="font-size: 18px">Nenhum proponente encontrado.</p>
+  </div>
+<% end %>
