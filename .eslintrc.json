@@ -1,0 +1,16 @@
+{
+  "extends": "standard-with-typescript",
+  "rules": {
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/consistent-type-imports": "off",
+    "@typescript-eslint/return-await": "off",
+    "no-new": "off",
+    "@typescript-eslint/unbound-method": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/consistent-type-definitions": "off"
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}
