@@ -7,8 +7,8 @@ class CreateAddresses < ActiveRecord::Migration[7.1]
       t.string :number
       t.string :district
       t.string :city
-      t.string :state
-      t.string :cep
+      t.string :uf
+      t.string :zipcode
       t.references :proponent, null: false, foreign_key: true
 
       t.timestamps
