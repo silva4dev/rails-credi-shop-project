@@ -1,0 +1,7 @@
+<h1 class="mb-4"><%= t('actions.edit', model: @proponent.name) %></h1>
+
+<%= render 'proponents/form', locals: { url: proponent_path } %>
+
+<%= link_to proponents_path, class: 'btn btn-secondary' do %>
+  <i class="fa fa-arrow-left" style="margin-right: 4px"></i> Voltar
+<% end %>
