@@ -5,9 +5,7 @@ Rails.application.routes.draw do
   scope module: :proponents do
     scope module: :application do
       scope module: :controllers do
-        resources :proponents do
-          get 'calculate_inss_discount', on: :collection
-        end
+        resources :proponents
       end
     end
   end
