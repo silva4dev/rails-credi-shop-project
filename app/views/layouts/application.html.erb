@@ -15,10 +15,10 @@
   <body>
     <div class="d-flex flex-column" style="height: 100vh;">
       <% if flash[:success] %>
-        <div class="p-5 bg-success text-success font-medium rounded-lg text-center" id="notice"><%= flash[:success] %></div>
+        <div class="p-4 bg-success font-medium rounded-lg text-center text-white" id="notice"><%= flash[:success] %></div>
       <% end %>
       <% if flash[:error] %>
-        <div class="p-5 bg-danger text-danger font-medium rounded-lg text-center" id="alert"><%= flash[:error] %></div>
+        <div class="p-4 bg-danger font-medium rounded-lg text-center text-white" id="alert"><%= flash[:error] %></div>
       <% end %>
       <nav class="navbar navbar-dark bg-dark shadow-sm p-4">
         <div class="d-flex justify-content-center align-items-center w-100">
