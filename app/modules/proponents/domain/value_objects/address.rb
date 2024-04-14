@@ -4,15 +4,15 @@ module Proponents
   module Domain
     module ValueObjects
       class Address
-        attr_reader :street, :number, :district, :city, :state, :cep
+        attr_reader :street, :number, :district, :city, :uf, :zipcode
 
-        def initialize(props)
-          @street = props[:street]
-          @number = props[:number]
-          @district = props[:district]
-          @city = props[:city]
-          @state = props[:state]
-          @cep = props[:cep]
+        def initialize(input)
+          @street = input[:street]
+          @number = input[:number]
+          @district = input[:district]
+          @city = input[:city]
+          @uf = input[:uf]
+          @zipcode = input[:zipcode]
         end
       end
     end
