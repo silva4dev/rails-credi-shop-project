@@ -16,3 +16,13 @@ pt-BR:
         cpf: 'Cpf'
         date_of_birth: 'Data de Nascimento'
         salary: 'Sálario'
+      address:
+        street: 'Rua'
+        number: 'Número'
+        district: 'Bairro'
+        city: 'Cidade'
+        uf: 'UF'
+        zipcode: 'CEP'
+      phone:
+        number: 'Número'
+        phone_type: 'Tipo do telefone'
