@@ -246,3 +246,8 @@ pt-BR:
       previous: "&laquo; Anterior"
       next: "Próxima &raquo;"
       truncate: "..."
+  actions:
+    create: 'Criar %{model}'
+    edit: 'Editar %{model}'
+    new: 'Novo %{model}'
+    back: 'Voltar para %{model}'
