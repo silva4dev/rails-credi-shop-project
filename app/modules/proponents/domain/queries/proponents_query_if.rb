@@ -4,7 +4,7 @@ module Proponents
   module Domain
     module Queries
       class ProponentsQueryIF
-        def paginate_by(page)
+        def paginate_by(input)
           raise NotImplementedError
         end
       end
