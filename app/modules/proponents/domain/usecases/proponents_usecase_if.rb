@@ -8,7 +8,15 @@ module Proponents
           raise NotImplementedError
         end
 
-        def calculate_inss_discount(input)
+        def create_proponent(input)
+          raise NotImplementedError
+        end
+
+        def destroy_proponent(input)
+          raise NotImplementedError
+        end
+
+        def update_proponent(input)
           raise NotImplementedError
         end
       end
