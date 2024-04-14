@@ -19,8 +19,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_12_043124) do
     t.string "number"
     t.string "district"
     t.string "city"
-    t.string "state"
-    t.string "cep"
+    t.string "uf"
+    t.string "zipcode"
     t.bigint "proponent_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -29,12 +29,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_12_043124) do
 
   create_table "phones", force: :cascade do |t|
     t.string "number"
-    t.integer "type"
-    t.string "phoneable_type", null: false
-    t.bigint "phoneable_id", null: false
+    t.integer "phone_type"
+    t.bigint "proponent_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["phoneable_type", "phoneable_id"], name: "index_phones_on_phoneable"
+    t.index ["proponent_id"], name: "index_phones_on_proponent_id"
   end
 
   create_table "proponents", force: :cascade do |t|
@@ -44,8 +43,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_12_043124) do
     t.decimal "salary", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cpf"], name: "index_proponents_on_cpf", unique: true
   end
 
   add_foreign_key "addresses", "proponents"
+  add_foreign_key "phones", "proponents"
 end
