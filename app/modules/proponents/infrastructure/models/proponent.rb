@@ -16,7 +16,13 @@ module Proponents
         validates :name, :cpf, :date_of_birth, :salary, presence: true
         validates :cpf, uniqueness: { case_sensitive: false }
         validates :cpf, cpf: true, format: { with: /\A\d{3}\.\d{3}\.\d{3}-\d{2}\z/ }
-        validates :date_of_birth, date: { before_or_equal_to: proc { Time.zone.now }, message: :invalid }
+        validate :date_of_birth_not_in_future
+
+        def date_of_birth_not_in_future
+          return unless date_of_birth.present? && date_of_birth > Date.current
+
+          errors.add(:date_of_birth, I18n.t('errors.messages.date_of_birth_not_in_future'))
+        end
 
         def self.model_name
           ActiveModel::Name.new(self, nil, 'proponent')
