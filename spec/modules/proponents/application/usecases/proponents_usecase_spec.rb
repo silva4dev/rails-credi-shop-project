@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Proponents::Application::Usecases::ProponentsUsecase do
+RSpec.describe Proponents::Application::Usecases::ProponentsUsecase, type: :usecases do
   let(:proponents_repository) { instance_double(Proponents::Infrastructure::Repositories::ProponentsRepository) }
   let(:usecase) { described_class.new(proponent: proponents_repository) }
 

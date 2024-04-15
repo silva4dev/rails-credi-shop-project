@@ -1,0 +1,26 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: rails_credit_shop_clean_project_development
+  username: postgres
+  password: 123456
+  host: localhost
+  port: 5432
+
+test:
+  <<: *default
+  database: rails_credit_shop_clean_project_test
+  username: postgres
+  password: 123456
+  host: localhost
+  port: 5432
+
+production:
+  <<: *default
+  database: rails_credit_shop_clean_project_production
+  username: rails_credit_shop_clean_project
+  password: <%= ENV["RAILS_CREDIT_SHOP_CLEAN_PROJECT_DATABASE_PASSWORD"] %>

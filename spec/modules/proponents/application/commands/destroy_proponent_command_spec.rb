@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Proponents::Application::Commands::DestroyProponentCommand do
+RSpec.describe Proponents::Application::Commands::DestroyProponentCommand, type: :command do
   describe '#initialize' do
     it 'initializes with the correct id' do
       input = { id: 1 }

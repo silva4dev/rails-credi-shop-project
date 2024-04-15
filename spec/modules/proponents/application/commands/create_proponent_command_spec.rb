@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Proponents::Application::Commands::CreateProponentCommand do
+RSpec.describe Proponents::Application::Commands::CreateProponentCommand, type: :command do
   describe '#initialize' do
     it 'initializes with the correct attributes' do
       input = {

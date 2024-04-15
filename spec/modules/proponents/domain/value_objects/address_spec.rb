@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Proponents::Domain::ValueObjects::Address do
+RSpec.describe Proponents::Domain::ValueObjects::Address, type: :value_object do
   describe '#initialize' do
     context 'with valid attributes' do
       let(:address_attributes) do

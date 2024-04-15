@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Proponents::Domain::Models::Proponent do
+RSpec.describe Proponents::Domain::Models::Proponent, type: :domain_model do
   describe '#initialize' do
     context 'with valid attributes' do
       let(:phone) { Proponents::Domain::Models::Phone.new({ number: '+55 (19) 99337-4443', phone_type: 'personal' }) }

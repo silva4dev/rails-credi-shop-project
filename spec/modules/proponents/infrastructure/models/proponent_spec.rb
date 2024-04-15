@@ -15,12 +15,12 @@ RSpec.describe Proponents::Infrastructure::Models::Proponent, type: :model do
     end
 
     it 'is not valid without a valid CPF format' do
-      proponent = build(:proponent, cpf: '12345678900') # CPF inválido
+      proponent = build(:proponent, cpf: '12345678900')
       expect(proponent).not_to be_valid
     end
 
     it 'is not valid with a CPF that already exists' do
-      existing_proponent = create(:proponent) # Cria um proponente existente
+      existing_proponent = create(:proponent)
       proponent = build(:proponent, cpf: existing_proponent.cpf)
       expect(proponent).not_to be_valid
     end

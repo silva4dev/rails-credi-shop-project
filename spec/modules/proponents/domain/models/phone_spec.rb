@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Proponents::Domain::Models::Phone do
+RSpec.describe Proponents::Domain::Models::Phone, type: :domain_model do
   describe '#initialize' do
     context 'with valid attributes' do
       let(:phone_attributes) do
