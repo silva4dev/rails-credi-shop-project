@@ -11,8 +11,13 @@ module Proponents
   module Application
     module Controllers
       class ProponentsController < ApplicationController
+        before_action :require_user_logged_in!
+
         def index
-          @proponents = Usecases::ProponentsUsecase.new.find_all_proponents_by_page({ page: params[:page] })
+          proponents_usecase = Usecases::ProponentsUsecase.new
+          @proponents = proponents_usecase.find_all_proponents
+          @proponents_by_salary_range = proponents_usecase.select_proponents_by_salary_range({ params:, proponents: @proponents })
+
           respond_to { |format| format.html { render 'proponents/index' } }
         end
 
