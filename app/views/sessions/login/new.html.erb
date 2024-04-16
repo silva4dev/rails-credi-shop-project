@@ -1,0 +1,17 @@
+<div class="d-flex flex-column justify-content-center align-items-center">
+  <h1>Login</h1>
+  <%= simple_form_for @user, url: sign_in_path, method: :post, html: { class: 'form-horizontal' } do |form| %>
+    <div class="mb-3">
+      <%= form.input :email, input_html: { class: "form-control", placeholder: "johndoe@example.com" } %>
+    </div>
+    <div class="mb-3">
+      <%= form.input :password, input_html: { class: "form-control", placeholder: "Senha" } %>
+    </div>
+    <div class="mb-3">
+      <%= link_to "Não tem uma conta?", sign_up_path %>
+    </div>
+    <div class="mb-3">
+      <%= form.button :submit, "Entrar", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
