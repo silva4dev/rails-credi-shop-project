@@ -1,6 +1,6 @@
-import * as Turbo from '@hotwired/turbo'
-import { application } from './application'
-import { ProponentsFormController } from './proponents_form_controller'
+import * as Turbo from "@hotwired/turbo";
+import { application } from "./application";
+import { ProponentFormController } from "./proponent_form_controller";
 
-Turbo.start()
-application.register('proponents-form', ProponentsFormController)
+application.register("proponent-form", ProponentFormController);
+Turbo.start();

@@ -12,8 +12,5 @@
       "module": "CommonJS"
     }
   },
-  "include": [
-    "app/assets/entrypoints/**/*",
-    "vite.config.ts"
-  ],
+  "include": ["app/assets/entrypoints/**/*", "vite.config.ts"]
 }

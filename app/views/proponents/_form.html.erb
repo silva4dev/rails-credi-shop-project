@@ -1,132 +1,202 @@
-<%= simple_form_for @proponent, url: locals[:url], html: { class: 'form-horizontal' } do |f| %>
-  <fieldset>
-    <legend>Proponente</legend>
-    <div class="form-group row mb-3">
-      <div class="col-sm-6">
-        <%= f.input :name, input_html: { class: "form-control #{@proponent.errors[:name].any? ? 'is-invalid' : '' }", placeholder: 'Nome' } %>
-        <% if @proponent.errors[:name].present? %>
-          <p class="text-danger">
-            <%= @proponent.errors[:name].first %>
-          </p>
-        <% end %>
-      </div>
-      <div class="col-sm-6">
-        <%= f.input :cpf, input_html: { class: "form-control #{@proponent.errors[:cpf].any? ? 'is-invalid' : '' }", placeholder: 'CPF' } %>
-        <% if @proponent.errors[:cpf].present? %>
-          <p class="text-danger">
-            <%= @proponent.errors[:cpf].first %>
-          </p>
-        <% end %>
-      </div>
-    </div>
-    <div class="form-group row mb-3">
-      <div class="col-sm-6">
-        <%= f.label :date_of_birth, class: 'mb-0' %>
-        <%= f.date_field :date_of_birth, class: "form-control #{@proponent.errors[:date_of_birth].any? ? 'is-invalid' : '' }", placeholder: 'Data de Nascimento' %>
-        <% if @proponent.errors[:date_of_birth].present? %>
-          <p class="text-danger">
-            <%= @proponent.errors[:date_of_birth].first %>
-          </p>
-        <% end %>
-      </div>
-      <div class="col-sm-6">
-        <%= f.input :salary, input_html: { class: "form-control #{@proponent.errors[:salary].any? ? 'is-invalid' : '' }", placeholder: 'Sálario' } %>
-        <% if @proponent.errors[:salary].present? %>
-          <p class="text-danger">
-            <%= @proponent.errors[:salary].first %>
-          </p>
-        <% end %>
-      </div>
-    </div>
-  </fieldset>
-  <%= f.simple_fields_for :address do |address_fields| %>
-    <fieldset class="mt-4">
-      <legend>Endereço</legend>
+<div data-controller="proponent-form">
+  <%= simple_form_for @proponent, url: locals[:url], html: { class: 'form-horizontal' }  do |f| %>
+    <fieldset>
+      <legend>Proponente</legend>
       <div class="form-group row mb-3">
         <div class="col-sm-6">
-          <%= address_fields.input :street, input_html: { class: "form-control #{@proponent.address.errors[:street].any? ? 'is-invalid' : '' }", placeholder: 'Rua' } %>
-          <% if @proponent.address.errors[:street].present? %>
+          <%= f.input :name, input_html: { class: "form-control", placeholder: "Nome" } %>
+          <% if @proponent.errors[:name].any? %>
             <p class="text-danger">
-              <%= @proponent.address.errors[:street].first %>
+              <%= @proponent.errors[:name].first %>
             </p>
           <% end %>
         </div>
         <div class="col-sm-6">
-          <%= address_fields.input :number, input_html: { class: "form-control #{@proponent.address.errors[:number].any? ? 'is-invalid' : '' }", placeholder: 'Número' } %>
-          <% if @proponent.address.errors[:number].present? %>
+          <%= f.input :cpf,
+                  input_html: {
+                    class: "form-control",
+                    placeholder: "CPF",
+                    data: {
+                      "proponent-form-target": "cpf",
+                    },
+                  } %>
+          <% if @proponent.errors[:cpf].any? %>
             <p class="text-danger">
-              <%= @proponent.address.errors[:number].first %>
+              <%= @proponent.errors[:cpf].first %>
             </p>
           <% end %>
         </div>
       </div>
       <div class="form-group row mb-3">
         <div class="col-sm-6">
-          <%= address_fields.input :district, input_html: { class: "form-control #{@proponent.address.errors[:district].any? ? 'is-invalid' : '' }", placeholder: 'Bairro' } %>
-          <% if @proponent.address.errors[:district].present? %>
+          <%= f.label :date_of_birth, class: "mb-0" %>
+          <%= f.date_field :date_of_birth,
+                       class: "form-control",
+                       placeholder: "Data de Nascimento" %>
+          <% if @proponent.errors[:date_of_birth].any? %>
             <p class="text-danger">
-              <%= @proponent.address.errors[:district].first %>
+              <%= @proponent.errors[:date_of_birth].first %>
             </p>
           <% end %>
         </div>
         <div class="col-sm-6">
-          <%= address_fields.input :city, input_html: { class: "form-control #{@proponent.address.errors[:city].any? ? 'is-invalid' : '' }", placeholder: 'Cidade' } %>
-          <% if @proponent.address.errors[:city].present? %>
+          <%= f.input :salary,
+                  input_html: {
+                    class: "form-control",
+                    placeholder: "Salário",
+                    data: {
+                      "proponent-form-target": "salary",
+                    },
+                  } %>
+          <% if @proponent.errors[:salary].any? %>
             <p class="text-danger">
-              <%= @proponent.address.errors[:city].first %>
-            </p>
-          <% end %>
-        </div>
-      </div>
-      <div class="form-group row mb-3">
-        <div class="col-sm-6">
-          <%= address_fields.input :uf, input_html: { class: "form-control #{@proponent.address.errors[:uf].any? ? 'is-invalid' : '' }", placeholder: 'UF' } %>
-          <% if @proponent.address.errors[:uf].present? %>
-            <p class="text-danger">
-              <%= @proponent.address.errors[:uf].first %>
-            </p>
-          <% end %>
-        </div>
-        <div class="col-sm-6">
-          <%= address_fields.input :zipcode, input_html: { class: "form-control #{@proponent.address.errors[:zipcode].any? ? 'is-invalid' : '' }", placeholder: 'CEP' } %>
-          <% if @proponent.address.errors[:zipcode].present? %>
-            <p class="text-danger">
-              <%= @proponent.address.errors[:zipcode].first %>
+              <%= @proponent.errors[:salary].first %>
             </p>
           <% end %>
         </div>
       </div>
     </fieldset>
-  <% end %>
-  <%= f.simple_fields_for :phone do |phone_fields| %>
-    <fieldset class="mt-4">
-      <legend>Telefone</legend>
-      <div class="form-group row mb-3">
-        <div class="col-sm-6">
-          <%= phone_fields.input :number, input_html: { class: "form-control #{@proponent.phone.errors[:number].any? ? 'is-invalid' : '' }", placeholder: 'Número do telefone' } %>
-          <% if @proponent.phone.errors[:number].present? %>
-            <p class="text-danger">
-              <%= @proponent.phone.errors[:number].first %>
-            </p>
-          <% end %>
+    <%= f.simple_fields_for :address do |address_fields| %>
+      <fieldset class="mt-4">
+        <legend>Endereço</legend>
+        <div class="form-group row mb-3">
+          <div class="col-sm-6">
+            <%= address_fields.input :zipcode,
+                                 input_html: {
+                                   class: "form-control",
+                                   placeholder: "CEP",
+                                   data: {
+                                     action: "keyup->proponent-form#onCepChange",
+                                     "proponent-form-target": "zipcode",
+                                   },
+                                 } %>
+            <% if @proponent.address.errors[:zipcode].any? %>
+              <p class="text-danger">
+                <%= @proponent.address.errors[:zipcode].first %>
+              </p>
+            <% end %>
+          </div>
+          <div class="col-sm-6">
+            <%= address_fields.input :street,
+                                 input_html: {
+                                   class: "form-control",
+                                   placeholder: "Rua",
+                                   data: {
+                                     "proponent-form-target": "street",
+                                   },
+                                 } %>
+            <% if @proponent.address.errors[:street].any? %>
+              <p class="text-danger">
+                <%= @proponent.address.errors[:street].first %>
+              </p>
+            <% end %>
+          </div>
         </div>
-        <div class="col-sm-6">
-          <%= phone_fields.input :phone_type,
-            collection: [['Pessoal', :personal], ['Referência', :reference]],
-            prompt: 'Selecione o tipo do telefone',
-            input_html: { class: "form-control #{'is-invalid' if @proponent&.phone&.errors[:phone_type]&.any?}" } %>
-          <% if @proponent&.phone&.errors[:phone_type]&.any? %>
-            <p class="text-danger">
-              <%= @proponent&.phone&.errors[:phone_type]&.first %>
-            </p>
-          <% end %>
+        <div class="form-group row mb-3">
+          <div class="col-sm-6">
+            <%= address_fields.input :district,
+                                 input_html: {
+                                   class: "form-control",
+                                   placeholder: "Bairro",
+                                   data: {
+                                     "proponent-form-target": "district",
+                                   },
+                                 } %>
+            <% if @proponent.address.errors[:district].any? %>
+              <p class="text-danger">
+                <%= @proponent.address.errors[:district].first %>
+              </p>
+            <% end %>
+          </div>
+          <div class="col-sm-6">
+            <%= address_fields.input :city,
+                                 input_html: {
+                                   class: "form-control",
+                                   placeholder: "Cidade",
+                                   data: {
+                                     "proponent-form-target": "city",
+                                   },
+                                 } %>
+            <% if @proponent.address.errors[:city].any? %>
+              <p class="text-danger">
+                <%= @proponent.address.errors[:city].first %>
+              </p>
+            <% end %>
+          </div>
         </div>
+        <div class="form-group row mb-3">
+          <div class="col-sm-6">
+            <%= address_fields.input :uf,
+                                 input_html: {
+                                   class: "form-control",
+                                   placeholder: "UF",
+                                   data: {
+                                     "proponent-form-target": "uf",
+                                   },
+                                 } %>
+            <% if @proponent.address.errors[:uf].any? %>
+              <p class="text-danger">
+                <%= @proponent.address.errors[:uf].first %>
+              </p>
+            <% end %>
+          </div>
+          <div class="col-sm-6">
+            <%= address_fields.input :number,
+                                 input_html: {
+                                   class: "form-control",
+                                   placeholder: "Número",
+                                 } %>
+            <% if @proponent.address.errors[:number].any? %>
+              <p class="text-danger">
+                <%= @proponent.address.errors[:number].first %>
+              </p>
+            <% end %>
+          </div>
+        </div>
+      </fieldset>
+    <% end %>
+    <%= f.simple_fields_for :phone do |phone_fields| %>
+      <fieldset class="mt-4">
+        <legend>Telefone</legend>
+        <div class="form-group row mb-3">
+          <div class="col-sm-6">
+            <%= phone_fields.input :number,
+                               input_html: {
+                                 class: "form-control",
+                                 placeholder: "Número do telefone",
+                                 data: {
+                                   "proponent-form-target": "number",
+                                 },
+                               } %>
+            <% if @proponent.phone.errors[:number].any? %>
+              <p class="text-danger">
+                <%= @proponent.phone.errors[:number].first %>
+              </p>
+            <% end %>
+          </div>
+          <div class="col-sm-6">
+            <%= phone_fields.input :phone_type,
+                               collection: [
+                                 ["Pessoal", :personal],
+                                 ["Referência", :reference],
+                               ],
+                               prompt: "Selecione o tipo do telefone",
+                               input_html: {
+                                 class: "form-control",
+                               } %>
+            <% if @proponent.phone.errors[:phone_type].any? %>
+              <p class="text-danger">
+                <%= @proponent.phone.errors[:phone_type].first %>
+              </p>
+            <% end %>
+          </div>
+        </div>
+      </fieldset>
+    <% end %>
+    <div class="form-group row mt-3">
+      <div class="col-sm-12 text-center">
+        <%= f.button :submit, class: "btn btn-outline-primary" %>
       </div>
-    </fieldset>
-  <% end %>
-  <div class="form-group row mt-3">
-    <div class="col-sm-12 text-center">
-      <%= f.button :submit, class: 'btn btn-outline-primary' %>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
