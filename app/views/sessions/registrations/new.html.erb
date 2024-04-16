@@ -1,0 +1,33 @@
+<div class="d-flex flex-column justify-content-center align-items-center">
+  <h1 class="mb-4">Cadastro</h1>
+  <%= simple_form_for @user, url: sign_up_path, method: :post, html: { class: 'form-horizontal' } do |form| %>
+    <div class="mb-3">
+      <%= form.input :email, input_html: { class: "form-control #{@user.errors[:email].any? ? 'is-invalid' : '' }", placeholder: "johndoe@example.com" } %>
+      <% if @user.errors[:email].present? %>
+        <p class="text-danger">
+          <%= @user.errors[:email].first %>
+        </p>
+      <% end %>
+    </div>
+    <div class="mb-3">
+      <%= form.input :password, input_html: { class: "form-control #{@user.errors[:password].any? ? 'is-invalid': '' }", placeholder: "Senha" }, required: true %>
+      <% if @user.errors[:password].present? %>
+        <p class="text-danger">
+          <%= @user.errors[:password].first %>
+        </p>
+      <% end %>
+    </div>
+    <div class="mb-3">
+      <%= form.input :password_confirmation, input_html: { class: "form-control #{@user.errors[:password_confirmation].any? ? 'is-invalid': '' }", placeholder: "Confirme sua senha" }, required: true %>
+      <% if @user.errors[:password_confirmation].present? %>
+        <p class="text-danger">
+          <%= @user.errors[:password_confirmation].first %>
+        </p>
+      <% end %>
+      <div class="mt-3">
+        <%= link_to "Já tem uma conta?", sign_in_path %>
+      </div>
+    </div>
+    <%= form.button :submit, "Cadastrar", class: "btn btn-primary" %>
+  <% end %>
+</div>
