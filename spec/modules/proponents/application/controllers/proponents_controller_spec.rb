@@ -3,9 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe Proponents::Application::Controllers::ProponentsController, type: :controller do
+  let(:user) { Sessions::Infrastructure::Models::User.create(email: 'test@example.com', password: 'password') }
+  let(:valid_session) { { user_id: user.id } }
+
   describe 'GET #index' do
     it 'returns http success' do
-      get :index
+      get :index, session: valid_session
       expect(response).to have_http_status(:success)
       expect(response).to render_template('proponents/index')
     end
@@ -13,7 +16,7 @@ RSpec.describe Proponents::Application::Controllers::ProponentsController, type:
 
   describe 'GET #new' do
     it 'returns http success' do
-      get :new
+      get :new, session: valid_session
       expect(response).to have_http_status(:success)
       expect(response).to render_template('proponents/new')
     end
@@ -43,7 +46,7 @@ RSpec.describe Proponents::Application::Controllers::ProponentsController, type:
     end
 
     it 'returns http success' do
-      get :edit, params: { id: proponent.id }
+      get :edit, params: { id: proponent.id }, session: valid_session
       expect(response).to have_http_status(:success)
       expect(response).to render_template('proponents/edit')
     end
@@ -73,7 +76,7 @@ RSpec.describe Proponents::Application::Controllers::ProponentsController, type:
 
       it 'creates a new proponent' do
         expect do
-          post :create, params: proponent_params
+          post :create, params: proponent_params, session: valid_session
         end.to change(Proponents::Infrastructure::Models::Proponent, :count).by(1)
 
         expect(response).to redirect_to(proponents_url)
@@ -128,7 +131,7 @@ RSpec.describe Proponents::Application::Controllers::ProponentsController, type:
       end
 
       it 'updates the proponent' do
-        put :update, params: updated_params
+        put :update, params: updated_params, session: valid_session
         expect(response).to redirect_to(proponents_url)
         expect(flash[:success]).to eq('Registro atualizado com sucesso.')
       end
@@ -160,7 +163,7 @@ RSpec.describe Proponents::Application::Controllers::ProponentsController, type:
 
     it 'destroys the proponent' do
       expect do
-        delete :destroy, params: { id: proponent.id }
+        delete :destroy, params: { id: proponent.id }, session: valid_session
       end.to change(Proponents::Infrastructure::Models::Proponent, :count).by(-1)
 
       expect(response).to redirect_to(proponents_url)
