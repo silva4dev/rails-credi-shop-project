@@ -10,6 +10,9 @@ pt-BR:
       proponent:
         one: 'Proponente'
         other: 'Proponentes'
+      user:
+        one: 'Usuário'
+        other: 'Usuários'
     attributes:
       proponent:
         name: 'Nome'
@@ -26,3 +29,7 @@ pt-BR:
       phone:
         number: 'Número'
         phone_type: 'Tipo do telefone'
+      user:
+        email: 'E-mail'
+        password: 'Senha'
+        password_confirmation: 'Confirme sua senha'
