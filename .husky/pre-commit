@@ -1,4 +1,8 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+# Fix files with prettier and eslint
 npx lint-staged
+
+# Run security scanning tool on staged files
+brakeman $(git diff --cached --name-only | grep '\.rb$')
