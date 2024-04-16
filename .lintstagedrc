@@ -1,7 +1,7 @@
 {
-  "app/views/**/*.html.erb": ["npm run erb:fix"],
-  "**/**/*.{scss,css}": ["npm run style:fix"],
-  "**/**/*.md": ["npm run md:fix"],
-  "**/**/*.json": ["npm run json:fix"],
-  "**/**/*.rb": ["npm run ruby:fix"]
+  "app/views/**/*.html.erb": ["pnpm run erb:fix"],
+  "**/**/*.{scss,css}": ["pnpm run style:fix"],
+  "**/**/*.md": ["pnpm run md:fix"],
+  "**/**/*.json": ["pnpm run json:fix"],
+  "**/**/*.rb": ["pnpm run ruby:fix"]
 }
