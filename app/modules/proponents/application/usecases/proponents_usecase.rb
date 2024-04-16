@@ -18,10 +18,6 @@ module Proponents
           end
         end
 
-        def find_all_proponents_by_page(input)
-          Infrastructure::Queries::ProponentsQuery.paginate_by({ page: input[:page] })
-        end
-
         def create_proponent(input)
           proponent = Domain::Models::Proponent.new(
             {
@@ -86,6 +82,31 @@ module Proponents
           return nil if proponent.blank?
 
           @proponent_repository.destroy(proponent)
+        end
+
+        def find_all_proponents
+          Infrastructure::Queries::ProponentsQuery.find_all_proponents
+        end
+
+        def select_proponents_by_salary_range(input)
+          salary_ranges = {
+            "Até R$ 1.045,00" => (0..1045.00),
+            "De R$ 1.045,01 a R$ 2.089,60" => (1045.01..2089.60),
+            "De R$ 2.089,61 até R$ 3.134,40" => (2089.61..3134.40),
+            "De R$ 3.134,41 até R$ 6.101,06" => (3134.41..6101.06)
+          }
+
+          proponents_by_salary_range = {}
+          salary_ranges.each_with_index do |(range_name, range), index|
+            page_param = input[:params]["salary_range_#{index}"]
+            proponents_in_range = input[:proponents].where(salary: range).page(page_param).per(5)
+            total_proponents = proponents_in_range.total_count
+            proponents_by_salary_range[range_name] = {
+              proponents: proponents_in_range,
+              total: total_proponents
+            }
+          end
+          proponents_by_salary_range
         end
       end
     end
