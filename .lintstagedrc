@@ -4,5 +4,5 @@
   "**/**/*.md": ["pnpm run md:fix"],
   "**/**/*.json": ["pnpm run json:fix"],
   "**/**/*.rb": ["pnpm run ruby:fix"],
-  "app/assets/entrypoints/**/*.{js,ts,jsx,tsx}": ["pnpm run eslint:fix"]
+  "app/assets/**/**/*.{js,ts,jsx,tsx}": ["pnpm run eslint:fix"]
 }
