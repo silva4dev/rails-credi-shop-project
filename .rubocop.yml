@@ -50,3 +50,6 @@ RSpec/MultipleExpectations:
 
 RSpec/ExampleLength:
   Enabled: false
+
+Rails/DynamicFindBy:
+  Enabled: false
