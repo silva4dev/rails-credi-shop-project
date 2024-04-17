@@ -14,7 +14,7 @@ module Proponents
         def initialize(repositories = {})
           super()
           @proponent_repository = repositories.fetch(:proponent) do
-            Proponents::Infrastructure::Repositories::ProponentsRepository.new
+            Infrastructure::Repositories::ProponentsRepository.new
           end
         end
 
@@ -25,7 +25,7 @@ module Proponents
               cpf: input.cpf,
               date_of_birth: input.date_of_birth,
               salary: input.salary,
-              address: Proponents::Domain::ValueObjects::Address.new(
+              address: Domain::ValueObjects::Address.new(
                 {
                   street: input.address[:street],
                   number: input.address[:number],
@@ -35,7 +35,7 @@ module Proponents
                   zipcode: input.address[:zipcode]
                 }
               ),
-              phone: Proponents::Domain::Models::Phone.new(
+              phone: Domain::Models::Phone.new(
                 {
                   number: input.phone[:number],
                   phone_type: input.phone[:phone_type]
@@ -47,7 +47,7 @@ module Proponents
         end
 
         def update_proponent(input)
-          return nil if @proponent_repository.find_by({ id: input.id }).blank?
+          return nil if @proponent_repository.find_by_id({ id: input.id }).blank?
 
           proponent = Domain::Models::Proponent.new(
             {
@@ -56,7 +56,7 @@ module Proponents
               cpf: input.cpf,
               date_of_birth: input.date_of_birth,
               salary: input.salary,
-              address: Proponents::Domain::ValueObjects::Address.new(
+              address: Domain::ValueObjects::Address.new(
                 {
                   street: input.address[:street],
                   number: input.address[:number],
@@ -66,7 +66,7 @@ module Proponents
                   zipcode: input.address[:zipcode]
                 }
               ),
-              phone: Proponents::Domain::Models::Phone.new(
+              phone: Domain::Models::Phone.new(
                 {
                   number: input.phone[:number],
                   phone_type: input.phone[:phone_type]
@@ -78,7 +78,7 @@ module Proponents
         end
 
         def destroy_proponent(input)
-          proponent = @proponent_repository.find_by({ id: input.id })
+          proponent = @proponent_repository.find_by_id({ id: input.id })
           return nil if proponent.blank?
 
           @proponent_repository.destroy(proponent)

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require_relative 'application_controller'
+require_relative '../usecases/sessions_usecase'
+require_relative '../commands/create_user_command'
 
 module Sessions
   module Application
@@ -12,11 +14,12 @@ module Sessions
         end
 
         def create
-          @user = Infrastructure::Models::User.new(user_params)
+          command = Commands::CreateUserCommand.new(user_params)
+          @user = Usecases::SessionsUsecase.new.create_user(command)
           respond_to do |format|
-            if @user.save
+            if @user.valid?
               session[:user_id] = @user.id
-              format.html { redirect_to root_path, flash: { success: 'Registrado com sucesso.' } }
+              format.html { redirect_to proponents_url, flash: { success: 'Registrado com sucesso.' } }
             else
               flash.now[:error] = 'Email ou senha inválidos. Tente novamente.'
               format.html { render 'sessions/registrations/new', status: :unprocessable_entity }

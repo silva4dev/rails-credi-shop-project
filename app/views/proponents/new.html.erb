@@ -1,7 +1,8 @@
-<h1 class="mb-4"><%= t('actions.new', model: @proponent.model_name.human) %></h1>
+<h1 class="mb-4"><%= t("actions.new", model: @proponent.model_name.human) %></h1>
 
-<%= render 'proponents/form', locals: { url: proponents_path } %>
+<%= render "proponents/form", locals: { url: proponents_path } %>
 
 <%= link_to proponents_path, class: 'btn btn-secondary' do %>
-  <i class="fa fa-arrow-left" style="margin-right: 4px"></i> Voltar
+  <i class="fa fa-arrow-left" style="margin-right: 4px"></i>
+  Voltar
 <% end %>

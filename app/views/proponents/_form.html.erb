@@ -4,7 +4,12 @@
       <legend>Proponente</legend>
       <div class="form-group row mb-3">
         <div class="col-sm-6">
-          <%= f.input :name, input_html: { class: "form-control", placeholder: "Nome" } %>
+          <%= f.input :name,
+                  input_html: {
+                    class:
+                      "form-control #{@proponent.errors[:name].any? ? "is-invalid" : ""}",
+                    placeholder: "Nome",
+                  } %>
           <% if @proponent.errors[:name].any? %>
             <p class="text-danger">
               <%= @proponent.errors[:name].first %>
@@ -14,7 +19,8 @@
         <div class="col-sm-6">
           <%= f.input :cpf,
                   input_html: {
-                    class: "form-control",
+                    class:
+                      "form-control #{@proponent.errors[:cpf].any? ? "is-invalid" : ""}",
                     placeholder: "CPF",
                     data: {
                       "proponent-form-target": "cpf",
@@ -31,7 +37,8 @@
         <div class="col-sm-6">
           <%= f.label :date_of_birth, class: "mb-0" %>
           <%= f.date_field :date_of_birth,
-                       class: "form-control",
+                       class:
+                         "form-control #{@proponent.errors[:date_of_birth].any? ? "is-invalid" : ""}",
                        placeholder: "Data de Nascimento" %>
           <% if @proponent.errors[:date_of_birth].any? %>
             <p class="text-danger">
@@ -42,7 +49,8 @@
         <div class="col-sm-6">
           <%= f.input :salary,
                   input_html: {
-                    class: "form-control",
+                    class:
+                      "form-control #{@proponent.errors[:salary].any? ? "is-invalid" : ""}",
                     placeholder: "Salário",
                     data: {
                       "proponent-form-target": "salary",
@@ -63,7 +71,8 @@
           <div class="col-sm-6">
             <%= address_fields.input :zipcode,
                                  input_html: {
-                                   class: "form-control",
+                                   class:
+                                     "form-control #{@proponent.address.errors[:zipcode].any? ? "is-invalid" : ""}",
                                    placeholder: "CEP",
                                    data: {
                                      action: "keyup->proponent-form#onCepChange",
@@ -79,7 +88,8 @@
           <div class="col-sm-6">
             <%= address_fields.input :street,
                                  input_html: {
-                                   class: "form-control",
+                                   class:
+                                     "form-control #{@proponent.address.errors[:street].any? ? "is-invalid" : ""}",
                                    placeholder: "Rua",
                                    data: {
                                      "proponent-form-target": "street",
@@ -96,7 +106,8 @@
           <div class="col-sm-6">
             <%= address_fields.input :district,
                                  input_html: {
-                                   class: "form-control",
+                                   class:
+                                     "form-control #{@proponent.address.errors[:district].any? ? "is-invalid" : ""}",
                                    placeholder: "Bairro",
                                    data: {
                                      "proponent-form-target": "district",
@@ -111,7 +122,8 @@
           <div class="col-sm-6">
             <%= address_fields.input :city,
                                  input_html: {
-                                   class: "form-control",
+                                   class:
+                                     "form-control #{@proponent.address.errors[:city].any? ? "is-invalid" : ""}",
                                    placeholder: "Cidade",
                                    data: {
                                      "proponent-form-target": "city",
@@ -128,7 +140,8 @@
           <div class="col-sm-6">
             <%= address_fields.input :uf,
                                  input_html: {
-                                   class: "form-control",
+                                   class:
+                                     "form-control #{@proponent.address.errors[:uf].any? ? "is-invalid" : ""}",
                                    placeholder: "UF",
                                    data: {
                                      "proponent-form-target": "uf",
@@ -143,7 +156,8 @@
           <div class="col-sm-6">
             <%= address_fields.input :number,
                                  input_html: {
-                                   class: "form-control",
+                                   class:
+                                     "form-control #{@proponent.address.errors[:number].any? ? "is-invalid" : ""}",
                                    placeholder: "Número",
                                  } %>
             <% if @proponent.address.errors[:number].any? %>
@@ -162,7 +176,8 @@
           <div class="col-sm-6">
             <%= phone_fields.input :number,
                                input_html: {
-                                 class: "form-control",
+                                 class:
+                                   "form-control #{@proponent.phone.errors[:number].any? ? "is-invalid" : ""}",
                                  placeholder: "Número do telefone",
                                  data: {
                                    "proponent-form-target": "number",
@@ -182,7 +197,8 @@
                                ],
                                prompt: "Selecione o tipo do telefone",
                                input_html: {
-                                 class: "form-control",
+                                 class:
+                                   "form-control #{@proponent.phone.errors[:phone_type].any? ? "is-invalid" : ""}",
                                } %>
             <% if @proponent.phone.errors[:phone_type].any? %>
               <p class="text-danger">

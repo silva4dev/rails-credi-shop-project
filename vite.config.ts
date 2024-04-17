@@ -1,16 +1,16 @@
-import { defineConfig } from 'vite'
-import FullReload from 'vite-plugin-full-reload'
-import RubyPlugin from 'vite-plugin-ruby'
-import StimulusHMR from 'vite-plugin-stimulus-hmr'
+import { defineConfig } from "vite";
+import FullReload from "vite-plugin-full-reload";
+import RubyPlugin from "vite-plugin-ruby";
+import StimulusHMR from "vite-plugin-stimulus-hmr";
 
 export default defineConfig({
   plugins: [
     RubyPlugin(),
     StimulusHMR(),
     FullReload([
-      'config/routes.rb',
-      'app/views/**/*',
-      'app/assets/stylesheets/**/*'
-    ])
-  ]
-})
+      "config/routes.rb",
+      "app/views/**/*",
+      "app/assets/stylesheets/**/*",
+    ]),
+  ],
+});

@@ -5,4 +5,4 @@
 npx lint-staged
 
 # Run security scanning tool on staged files
-brakeman $(git diff --cached --name-only | grep '\.rb$')
+brakeman $(git diff --cached --name-only | grep '\.rb$ --force')

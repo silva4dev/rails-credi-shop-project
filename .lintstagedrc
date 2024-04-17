@@ -1,6 +1,5 @@
 {
   "app/views/**/*.html.erb": ["pnpm run erb:fix"],
-  "**/**/*.{scss,css}": ["pnpm run style:fix"],
   "**/**/*.md": ["pnpm run md:fix"],
   "**/**/*.json": ["pnpm run json:fix"],
   "**/**/*.rb": ["pnpm run ruby:fix"]

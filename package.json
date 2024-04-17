@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "./bin/dev",
-    "fix": "pnpm run style:fix; pnpm run eslint:fix; pnpm run md:fix; pnpm run json:fix; pnpm run erb:fix; pnpm run ruby:fix",
+    "fix": "pnpm run eslint:fix; pnpm run md:fix; pnpm run json:fix; pnpm run erb:fix; pnpm run ruby:fix",
     "lint": "pnpm run style:lint; pnpm run eslint:lint; pnpm run md:lint; pnpm run json:lint; pnpm run erb:lint; pnpm run ruby:lint",
     "ruby:fix": "bundle exec rubocop -A",
     "ruby:lint": "bundle exec rubocop",

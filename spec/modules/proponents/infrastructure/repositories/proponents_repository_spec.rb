@@ -46,7 +46,7 @@ RSpec.describe Proponents::Infrastructure::Repositories::ProponentsRepository, t
     end
   end
 
-  describe '#find_by' do
+  describe '#find_by_id' do
     it 'finds a proponent by ID' do
       Proponents::Infrastructure::Models::Proponent.create(
         id: 1,
@@ -57,7 +57,7 @@ RSpec.describe Proponents::Infrastructure::Repositories::ProponentsRepository, t
       )
 
       repository = described_class.new
-      proponent = repository.find_by(id: 1)
+      proponent = repository.find_by_id(id: 1)
       expect(proponent.name).to eq('Jane Smith')
       expect(proponent.cpf).to eq('987.654.321-00')
       expect(proponent.date_of_birth).to eq(Date.new(1990, 3, 15))
@@ -75,10 +75,10 @@ RSpec.describe Proponents::Infrastructure::Repositories::ProponentsRepository, t
         salary: 6000.00
       )
       repository = described_class.new
-      proponent = repository.find_by(id: 1)
+      proponent = repository.find_by_id(id: 1)
       expect(proponent).not_to be_nil
       repository.destroy(proponent)
-      proponent = repository.find_by(id: 1)
+      proponent = repository.find_by_id(id: 1)
       expect(proponent).to be_nil
     end
   end

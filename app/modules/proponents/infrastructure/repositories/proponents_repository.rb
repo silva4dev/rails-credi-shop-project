@@ -30,7 +30,7 @@ module Proponents
           proponent
         end
 
-        def find_by(input)
+        def find_by_id(input)
           Models::Proponent.find_by(id: input[:id])
         end
 

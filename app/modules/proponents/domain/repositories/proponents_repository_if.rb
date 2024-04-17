@@ -8,7 +8,7 @@ module Proponents
           raise NotImplementedError
         end
 
-        def find_by(input)
+        def find_by_id(input)
           raise NotImplementedError
         end
 
