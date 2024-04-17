@@ -19,6 +19,8 @@
 !/tmp/storage/.keep
 
 /public/assets
+/public/vite-dev
+/public/vite
 
 /config/master.key
 
@@ -26,3 +28,4 @@
 !/app/assets/builds/.keep
 
 /node_modules
+

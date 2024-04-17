@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "./bin/dev",
-    "fix": "pnpm run eslint:fix; pnpm run md:fix; pnpm run json:fix; pnpm run erb:fix; pnpm run ruby:fix",
+    "fix": "pnpm run style:fix; pnpm run md:fix; pnpm run json:fix; pnpm run erb:fix; pnpm run ruby:fix; pnpm run eslint:fix; ",
     "lint": "pnpm run style:lint; pnpm run eslint:lint; pnpm run md:lint; pnpm run json:lint; pnpm run erb:lint; pnpm run ruby:lint",
     "ruby:fix": "bundle exec rubocop -A",
     "ruby:lint": "bundle exec rubocop",
@@ -23,8 +23,8 @@
     "md:lint": "prettier --check '**/**/*.md'",
     "json:fix": "prettier --write '*.json'; prettier --write '**/**/*.json'",
     "json:lint": "prettier --check '*.json'; prettier --check '**/**/*.json'",
-    "eslint:fix": "prettier --write '**/**/*.{js,ts,jsx,tsx}'; eslint --fix",
-    "eslint:lint": "prettier --check '**/**/*.{js,ts,jsx,tsx}'; eslint",
+    "eslint:fix": "eslint --fix '**/**/*.{js,ts,jsx,tsx}'",
+    "eslint:lint": "eslint '**/**/*.{js,ts,jsx,tsx}'",
     "prepare": "husky install",
     "convert-to-lf": "find . -type f ! -path './node_modules/*' -exec dos2unix {} \\;"
   },
