@@ -12,10 +12,11 @@ module Proponents
   module Application
     module Usecases
       class ProponentsUsecase < Domain::Usecases::ProponentsUsecaseIF
-        def initialize(repositories = {}, workers = {})
+        def initialize(repositories = {}, workers = {}, queries = {})
           super()
           @proponent_repository = repositories.fetch(:proponent) { Infrastructure::Repositories::ProponentsRepository.new }
           @update_salary_worker = workers.fetch(:update_salary) { Infrastructure::Workers::UpdateSalaryWorker }
+          @proponent_query = queries.fetch(:find_all_proponents) { Infrastructure::Queries::ProponentsQuery }
         end
 
         def create_proponent(input)
@@ -89,7 +90,7 @@ module Proponents
         end
 
         def find_all_proponents
-          Infrastructure::Queries::ProponentsQuery.find_all_proponents
+          @proponent_query.find_all_proponents
         end
 
         def calculate_inss_discount(input)
