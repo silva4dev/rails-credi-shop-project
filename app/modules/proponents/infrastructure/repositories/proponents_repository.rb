@@ -2,6 +2,7 @@
 
 require_relative '../../domain/repositories/proponents_repository_if'
 require_relative '../models/proponent'
+require 'pry-remote'
 
 module Proponents
   module Infrastructure
@@ -46,7 +47,6 @@ module Proponents
             name: input.name,
             cpf: input.cpf,
             date_of_birth: input.date_of_birth,
-            salary: input.salary,
             phone_attributes: {
               number: input.phone.number,
               phone_type: input.phone.phone_type
@@ -61,6 +61,11 @@ module Proponents
             }
           )
           proponent
+        end
+
+        def update_by_salary(input)
+          proponent = Models::Proponent.find(input[:id])
+          proponent.update(salary: input[:salary])
         end
       end
     end

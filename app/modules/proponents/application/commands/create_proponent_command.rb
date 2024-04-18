@@ -10,7 +10,7 @@ module Proponents
           @name = input[:name]
           @cpf = input[:cpf]
           @date_of_birth = input[:date_of_birth]
-          @salary = input[:salary]
+          @salary = input[:salary].to_f
           @address = input[:address_attributes]
           @phone = input[:phone_attributes]
         end

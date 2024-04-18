@@ -13,5 +13,6 @@ module RailsCreditShopCleanProject
     config.autoload_paths += Dir[Rails.root.join("app/modules")]
     config.autoload_lib(ignore: %w[assets tasks])
     config.generators.system_tests = nil
+    config.active_job.queue_adapter = :sidekiq
   end
 end

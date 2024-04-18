@@ -11,13 +11,12 @@ module Proponents
   module Application
     module Controllers
       class ProponentsController < ApplicationController
-        before_action :require_user_logged_in!
+        before_action :require_user_logged_in!, except: %i[calculate_inss_discount]
 
         def index
           proponents_usecase = Usecases::ProponentsUsecase.new
           @proponents = proponents_usecase.find_all_proponents
-          @proponents_by_salary_range = proponents_usecase.select_proponents_by_salary_range({ params:, proponents: @proponents })
-
+          @proponents_by_salary_range = proponents_usecase.filter_proponents_by_salary_range({ params:, proponents: @proponents })
           respond_to { |format| format.html { render 'proponents/index' } }
         end
 
@@ -79,6 +78,11 @@ module Proponents
               end
             end
           end
+        end
+
+        def calculate_inss_discount
+          inss_discount = Usecases::ProponentsUsecase.new.calculate_inss_discount({ salary: params[:salary].to_f })
+          render json: { inssDiscount: inss_discount }
         end
 
         private

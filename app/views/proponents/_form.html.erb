@@ -54,8 +54,10 @@
                     placeholder: "Salário",
                     data: {
                       "proponent-form-target": "salary",
+                      "proponent-id": @proponent.salary,
                     },
                   } %>
+          <div class="text-warning" id="discount-salary"></div>
           <% if @proponent.errors[:salary].any? %>
             <p class="text-danger">
               <%= @proponent.errors[:salary].first %>
@@ -193,12 +195,12 @@
             <%= phone_fields.input :phone_type,
                                collection: [
                                  ["Pessoal", :personal],
-                                 ["Referência", :reference],
+                                 ["Referêncial", :reference],
                                ],
                                prompt: "Selecione o tipo do telefone",
                                input_html: {
                                  class:
-                                   "form-control #{@proponent.phone.errors[:phone_type].any? ? "is-invalid" : ""}",
+                                   "form-control #{"is-invalid" if @proponent.phone.errors[:phone_type].any?}",
                                } %>
             <% if @proponent.phone.errors[:phone_type].any? %>
               <p class="text-danger">

@@ -13,13 +13,13 @@ gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'brakeman'
-gem 'sidekiq'
+gem 'sidekiq', '7.2.2'
 gem 'vite_rails'
 gem 'kaminari'
 gem 'sassc-rails'
 gem 'bcrypt'
 gem 'simple_form'
-gem 'redis'
+gem 'redis-rails'
 gem 'validates_cpf'
 gem 'date_validator'
 gem 'tzinfo-data', platforms: %i[windows jruby]
@@ -36,6 +36,7 @@ group :development, :test do
   gem 'faker'
   gem 'factory_bot_rails'
   gem 'rubocop-rspec'
+  gem 'pry-remote'
 end
 
 group :development do

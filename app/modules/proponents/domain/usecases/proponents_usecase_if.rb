@@ -12,7 +12,11 @@ module Proponents
           raise NotImplementedError
         end
 
-        def select_proponents_by_salary_range(input)
+        def calculate_inss_discount(input)
+          raise NotImplementedError
+        end
+
+        def filter_proponents_by_salary_range(input)
           raise NotImplementedError
         end
 

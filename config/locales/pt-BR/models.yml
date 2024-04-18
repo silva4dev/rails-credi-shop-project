@@ -29,6 +29,9 @@ pt-BR:
       phone:
         number: 'Número'
         phone_type: 'Tipo do telefone'
+        phone_type_enum:
+          personal: "Pessoal"
+          reference: "Referêncial"
       user:
         email: 'E-mail'
         password: 'Senha'

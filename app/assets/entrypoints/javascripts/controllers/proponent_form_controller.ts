@@ -33,13 +33,27 @@ export class ProponentFormController extends Controller {
 
     IMask(this.salaryTarget, {
       mask: Number,
-      scale: 2,
-      signed: false,
-      thousandsSeparator: ''
+      radix: '.',
+      min: 1,
+      max: 9999999.99,
+      normalizeZeros: true,
+      padFractionalZeros: true
     })
 
     IMask(this.numberTarget, {
       mask: '+55 (00) 00000-0000'
+    })
+
+    this.salaryTarget.addEventListener('blur', () => {
+      const salary = Number(this.salaryTarget.value)
+      const oldSalary = Number(this.salaryTarget.getAttribute('data-proponent-id'))
+        .toLocaleString('en', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        })
+      if (+oldSalary !== salary) {
+        this.calculateINSSDiscount(Number(salary))
+      }
     })
   }
 
@@ -65,5 +79,25 @@ export class ProponentFormController extends Controller {
         console.error('Error fetching data:', error)
       }
     }
+  }
+
+  async calculateINSSDiscount (salary: number) {
+    try {
+      const response = await fetch(`/proponents/calculate_inss_discount?salary=${salary}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const { inssDiscount } = await response.json()
+      this.displayINSSDiscount(inssDiscount)
+    } catch (error) {
+      console.error('Error calculating INSS discount:', error)
+    }
+  }
+
+  displayINSSDiscount (inssDiscount: number) {
+    const discountElement = document.getElementById('discount-salary')
+    discountElement.textContent = `Desconto INSS: R$ ${inssDiscount.toFixed(2)}`
   }
 }

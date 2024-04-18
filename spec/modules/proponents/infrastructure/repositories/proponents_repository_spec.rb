@@ -55,7 +55,6 @@ RSpec.describe Proponents::Infrastructure::Repositories::ProponentsRepository, t
         date_of_birth: Date.new(1990, 3, 15),
         salary: 6000.00
       )
-
       repository = described_class.new
       proponent = repository.find_by_id(id: 1)
       expect(proponent.name).to eq('Jane Smith')
@@ -109,7 +108,6 @@ RSpec.describe Proponents::Infrastructure::Repositories::ProponentsRepository, t
         name: 'Jane Smith Updated',
         cpf: '987.654.321-00',
         date_of_birth: Date.new(1990, 3, 15),
-        salary: 8000.00,
         address: Proponents::Domain::ValueObjects::Address.new(
           street: '123 Main St Updated',
           number: '100',
@@ -127,7 +125,6 @@ RSpec.describe Proponents::Infrastructure::Repositories::ProponentsRepository, t
       output = repository.update(proponent)
       expect(output).to be_valid
       expect(output.name).to eq('Jane Smith Updated')
-      expect(output.salary).to eq(8000.00)
       expect(output.address.street).to eq('123 Main St Updated')
       expect(output.address.district).to eq('Downtown Updated')
       expect(output.address.city).to eq('Example City Updated')

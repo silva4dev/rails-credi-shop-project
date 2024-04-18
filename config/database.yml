@@ -5,22 +5,12 @@ default: &default
 
 development:
   <<: *default
-  database: rails_credit_shop_clean_project_development
-  username: postgres
-  password: 123456
-  host: localhost
-  port: 5432
+  url: <%= ENV['DATABASE_URL'] %>_development
 
 test:
   <<: *default
-  database: rails_credit_shop_clean_project_test
-  username: postgres
-  password: 123456
-  host: localhost
-  port: 5432
+  url: <%= ENV['DATABASE_URL'] %>_test
 
 production:
   <<: *default
-  database: rails_credit_shop_clean_project_production
-  username: rails_credit_shop_clean_project
-  password: <%= ENV["RAILS_CREDIT_SHOP_CLEAN_PROJECT_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>_production

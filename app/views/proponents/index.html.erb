@@ -1,87 +1,42 @@
-<div class="d-flex justify-content-between align-items-center mb-4">
+<div class="d-flex justify-content-between align-items-center mb-5">
   <h1>Lista de Proponentes</h1>
   <%= link_to new_proponent_path, class: "btn btn-outline-primary" do %>
     <i class="fa fa-plus" style="margin-right: 8px"></i>Novo Proponente
   <% end %>
 </div>
 <% if @proponents_by_salary_range.values.any? { |data| data[:proponents].any? } %>
-  <% @proponents_by_salary_range.each_with_index do |(range_name, data), index| %>
-    <% if data[:proponents].any? %>
-      <h5><%= range_name %></h5>
-      <p>Total de funcionários:
-        <%= data[:total] %></p>
-      <div class="row mb-1">
-        <% data[:proponents].each do |proponent| %>
-          <div class="col-md-4 mb-4">
-            <div class="card rounded">
-              <div class="card-body">
-                <h5 class="card-title mb-3"><%= proponent.name %></h5>
-                <p class="text-secondary mb-1">
-                  <strong>CPF:</strong>
-                  <%= proponent.cpf %>
-                </p>
-                <p class="text-secondary mb-1">
-                  <strong>Data de Nascimento:</strong>
-                  <%= l(proponent.date_of_birth) %>
-                </p>
-                <p class="text-secondary mb-0">
-                  <strong>Salário:</strong>
-                  <%= number_to_currency(proponent.salary, unit: "", separator: ",", delimiter: ".") %>
-                </p>
-                <p class="text-secondary mb-0">
-                  <strong>CEP:</strong>
-                  <%= proponent.address.zipcode %>
-                </p>
-                <p class="text-secondary mb-0">
-                  <strong>Rua:</strong>
-                  <%= proponent.address.street %>
-                </p>
-                <p class="text-secondary mb-0">
-                  <strong>Número:</strong>
-                  <%= proponent.address.number %>
-                </p>
-                <p class="text-secondary mb-0">
-                  <strong>Bairro:</strong>
-                  <%= proponent.address.district %>
-                </p>
-                <p class="text-secondary mb-0">
-                  <strong>Cidade:</strong>
-                  <%= proponent.address.city %>
-                </p>
-                <p class="text-secondary mb-0">
-                  <strong>UF:</strong>
-                  <%= proponent.address.uf %>
-                </p>
-                <p class="text-secondary mb-0">
-                  <strong>Telefone:</strong>
-                  <%= proponent.phone.number %>
-                </p>
-                <p class="text-secondary mb-0">
-                  <strong>Tipo do telefone:</strong>
-                  <%= proponent.phone.phone_type %>
-                </p>
-                <div class="d-flex align-items-center justify-content-start mt-3 gap-2">
-                  <%= link_to edit_proponent_path(proponent.id), class: "btn btn-warning" do %>
-                    <i class="fa fa-edit" style="margin-right: 4px"></i>
-                    Editar
-                  <% end %>
-                  <%= button_to proponent_path(proponent), method: :delete, class: "btn btn-danger", style: "margin-right: 4px;", onclick: "return confirm('Tem certeza que deseja excluir este proponente?');" do %>
-                    <i class="fa fa-trash"></i>
-                    Deletar
-                  <% end %>
-                </div>
+  <div class="row">
+    <div class="col-10">
+      <% @proponents_by_salary_range.each_with_index do |(range_name, data), index| %>
+        <% if data[:proponents].any? %>
+          <h5><%= range_name %></h5>
+          <p>Total de funcionários:
+            <%= data[:total] %></p>
+          <div class="row mb-1">
+            <% data[:proponents].each do |proponent| %>
+              <div class="col-md-4 mb-4">
+                <%= render "proponents/proponent", proponent: proponent %>
               </div>
-            </div>
+            <% end %>
+          </div>
+          <div class="mb-5">
+            <%= paginate data[:proponents],
+            theme: "twitter-bootstrap-4",
+            param_name: "salary_range_#{index}" %>
           </div>
         <% end %>
+      <% end %>
+    </div>
+    <div class="col-2">
+      <div style="width:max-content">
+        <canvas
+          data-controller="proponent-chart"
+          data-proponent-chart-chart-data-value="<%= @proponents_by_salary_range.to_json %>"
+        >
+        </canvas>
       </div>
-      <div class="mb-5">
-        <%= paginate data[:proponents],
-        theme: "twitter-bootstrap-4",
-        param_name: "salary_range_#{index}" %>
-      </div>
-    <% end %>
-  <% end %>
+    </div>
+  </div>
 <% else %>
   <p class="text-secondary text-center" style="font-size: 18px">
     Nenhum proponente foi encontrado.

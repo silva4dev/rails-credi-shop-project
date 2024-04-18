@@ -2,6 +2,8 @@
 
 set -e
 
+bundle exec rails dev:cache
+
 if [ -f tmp/pids/server.pid ]; then
   rm tmp/pids/server.pid
 fi

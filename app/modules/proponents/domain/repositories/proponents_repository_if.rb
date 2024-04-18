@@ -19,6 +19,10 @@ module Proponents
         def update(input)
           raise NotImplementedError
         end
+
+        def update_by_salary(input)
+          raise NotImplementedError
+        end
       end
     end
   end

@@ -10,7 +10,9 @@ RUN apt-get update -qq && apt-get install -y vim \
         postgresql-client \
         dirmngr \
         apt-transport-https \
-        lsb-release && \
+        lsb-release \
+        redis-tools && \
+        redis-server && \
     curl -sL https://deb.nodesource.com/setup_21.x | bash -
 
 RUN apt-get install -y nodejs=21.*
