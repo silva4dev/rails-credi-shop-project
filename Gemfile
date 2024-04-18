@@ -22,11 +22,11 @@ gem 'simple_form'
 gem 'redis-rails'
 gem 'validates_cpf'
 gem 'date_validator'
-gem 'tzinfo-data', platforms: %i[windows jruby]
+gem 'foreman'
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
   gem 'better_errors'
-  gem 'debug', platforms: %i[mri windows]
   gem 'dotenv-rails'
   gem 'erb-formatter'
   gem 'erb_lint'
@@ -37,6 +37,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rubocop-rspec'
   gem 'pry-remote'
+  gem 'debug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do

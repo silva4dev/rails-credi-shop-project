@@ -2,7 +2,7 @@ version: "3"
 
 services:
   postgres:
-    container_name: db
+    container_name: postgres
     environment:
       POSTGRES_PASSWORD: postgres
     image: postgres:latest
@@ -13,7 +13,7 @@ services:
 
   redis:
     container_name: redis
-    image: redis:3
+    image: redis:latest
     ports:
       - 6379:6379
     volumes:
@@ -31,7 +31,7 @@ services:
       - "3000:3000"
     volumes:
       - .:/app
-    env_file: .env
+    env_file: .env.test
     environment:
       RAILS_ENV: development
       REDIS_URL: redis://redis:6379
